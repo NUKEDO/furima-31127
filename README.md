@@ -6,7 +6,7 @@
 | -------------------- | ------- | ----------- |
 | nickname             | string  | null: false |
 | mail                 | string  | null: false |
-| password             | string  | null: false |
+| encrypted_password   | string  | null: false |
 | family_name          | string  | null: false |
 | first_name           | string  | null: false |
 | family_name_katakana | string  | null: false |
@@ -22,6 +22,7 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
+| price              | integer    | null: false                    |
 | name               | string     | null: false                    |
 | text               | text       | null: false                    |
 | category_id        | integer    | null: false                    |
