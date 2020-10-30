@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
   with_options presence: true do
     validates :price,             numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
-    validates :name
-    validates :text
+    validates :name,              length: { maximum: 40 }
+    validates :text,              length: { maximum: 1000 }
     validates :category_id
     validates :detail_id
     validates :burden_id
