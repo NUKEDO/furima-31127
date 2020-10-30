@@ -1,13 +1,13 @@
 class Item < ApplicationRecord
   with_options presence: true do
-    validates :price
+    validates :price,             numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
     validates :name
     validates :text
-    validates :category
-    validates :detail
-    validates :burden
-    validates :shipment_source
-    validates :number_of_days
+    validates :category_id
+    validates :detail_id
+    validates :burden_id
+    validates :shipment_source_id
+    validates :number_of_days_id
   end
 
   with_options numericality: { other_than: 1 } do
