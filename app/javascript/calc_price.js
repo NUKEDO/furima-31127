@@ -6,7 +6,7 @@ function calcProfit() {
     const itemProfit = itemVal * 0.9;    
     const addTaxPrice = document.getElementById("add-tax-price");
     addTaxPrice.innerHTML = Math.floor(`${itemTax}`);
-    const profit = document.getElementById("profit")
+    const profit = document.getElementById("profit");
     profit.innerHTML = Math.floor(`${itemProfit}`);
   });
 }

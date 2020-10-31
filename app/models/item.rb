@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   with_options presence: true do
-    validates :price,             numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
+    validates :price,             numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10_000_000 }
     validates :name,              length: { maximum: 40 }
     validates :text,              length: { maximum: 1000 }
     validates :category_id
@@ -8,14 +8,15 @@ class Item < ApplicationRecord
     validates :burden_id
     validates :shipment_source_id
     validates :number_of_days_id
+    # validates :image
   end
 
-  with_options numericality: { other_than: 1 } do
-    validates :category_id
-    validates :detail_id
-    validates :burden_id
-    validates :shipment_source_id
-    validates :number_of_days_id
+  with_options numericality: { only_integer: true, other_than: 1, greater_than_or_equal_to: 2 } do
+    validates :category_id,         numericality: { less_than_or_equal_to: 11 }
+    validates :detail_id,           numericality: { less_than_or_equal_to: 7 }
+    validates :burden_id,           numericality: { less_than_or_equal_to: 3 }
+    validates :shipment_source_id,  numericality: { less_than_or_equal_to: 48 }
+    validates :number_of_days_id,   numericality: { less_than_or_equal_to: 4 }
   end
 
   belongs_to :user
