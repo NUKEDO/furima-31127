@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    @item.image = fixture_file_upload("/files/DSC_0934.JPG")
+    @item.image = fixture_file_upload('/files/DSC_0934.JPG')
   end
 
   def generate_long(num)
     str = ''
     string = 'あ'
-    num.times do |i|
+    num.times do |_i|
       @str = str << string
     end
   end
