@@ -1,7 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: :new
 
-  def index; end
+  # SOLD OUT表示が未実装
+  def index
+    @item = Item.all.order(id: "DESC")
+  end
 
   def new
     @item = Item.new
