@@ -8,7 +8,7 @@ class Item < ApplicationRecord
     validates :burden_id
     validates :shipment_source_id
     validates :number_of_days_id
-    # validates :image
+    validates :image
   end
 
   with_options numericality: { only_integer: true, other_than: 1, greater_than_or_equal_to: 2 } do

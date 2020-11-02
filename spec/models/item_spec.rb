@@ -3,13 +3,14 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
+    @item.image = fixture_file_upload("/files/DSC_0934.JPG")
   end
 
   def generate_long(num)
     str = ''
-    a_line = 'あいうえお'
-    num.times do |_i|
-      @str = str << a_line
+    string = 'あ'
+    num.times do |i|
+      @str = str << string
     end
   end
 
@@ -27,12 +28,12 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
       it 'nameが40文字以下なので出品できる' do
-        generate_long(8)
+        generate_long(40)
         @item.name = @str
         expect(@item).to be_valid
       end
       it 'textが1000文字以下なので出品できる' do
-        generate_long(20)
+        generate_long(1000)
         @item.text = @str
         expect(@item).to be_valid
       end
@@ -70,8 +71,8 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
       it 'nameが41文字以上なので出品できない' do
-        generate_long(8)
-        @item.name = @str << 'a'
+        generate_long(41)
+        @item.name = @str
         @item.valid?
         expect(@item.errors.full_messages).to include('Name is too long (maximum is 40 characters)')
       end
@@ -81,8 +82,8 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Text can't be blank")
       end
       it 'textが1000文字以上なので出品できない' do
-        generate_long(200)
-        @item.text = @str << 'a'
+        generate_long(1001)
+        @item.text = @str
         @item.valid?
         expect(@item.errors.full_messages).to include('Text is too long (maximum is 1000 characters)')
       end
@@ -236,17 +237,16 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Number of days is not a number')
       end
-      # it 'imageが存在しないので出品できない' do
-      #   @item.image = nil
-      #   @item.valid?
-      #   binding.pry
-      #   expect(@item.errors.full_messages).to include('Number of days is not a number')
-      # end
-      # it 'ユーザーが紐づいていないので出品できない' do
-      #   @item.user = nil
-      #   @item.valid?
-      #   expect(@item.errors.full_messages).to include('Number of days is not a number')
-      # end
+      it 'imageが存在しないので出品できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+      it 'ユーザーが紐づいていないので出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
     end
   end
 end

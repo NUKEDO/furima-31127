@@ -8,7 +8,6 @@ FactoryBot.define do
     burden_id           { '2' }
     shipment_source_id  { '15' }
     number_of_days_id   { '2' }
-    image               { Faker::Lorem.sentence }
     association :user
   end
 end
