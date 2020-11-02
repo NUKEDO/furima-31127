@@ -17,4 +17,6 @@ class User < ApplicationRecord
     validates :first_name_katakana,   format: { with: VALID_KATAKANA }
     validates :birthday
   end
+
+  has_many :items
 end
