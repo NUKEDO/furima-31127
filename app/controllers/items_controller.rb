@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   # SOLD OUT表示が未実装
   def index
-    @item = Item.all.order(id: 'DESC')
+    @item = Item.all.order(created_at: 'DESC')
   end
 
   def new
