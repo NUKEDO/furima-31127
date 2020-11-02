@@ -207,35 +207,35 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Shipment source is not a number')
       end
-      it 'number_of_days_idが空なので出品できない' do
-        @item.number_of_days_id = ''
+      it 'number_of_day_idが空なので出品できない' do
+        @item.number_of_day_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Number of days can't be blank")
+        expect(@item.errors.full_messages).to include("Number of day can't be blank")
       end
-      it 'number_of_days_idが1なので出品できない' do
-        @item.number_of_days_id = '1'
+      it 'number_of_day_idが1なので出品できない' do
+        @item.number_of_day_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Number of days must be other than 1')
+        expect(@item.errors.full_messages).to include('Number of day must be other than 1')
       end
-      it 'number_of_days_idが0以下なので出品できない' do
-        @item.number_of_days_id = '0'
+      it 'number_of_day_idが0以下なので出品できない' do
+        @item.number_of_day_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Number of days must be greater than or equal to 2')
+        expect(@item.errors.full_messages).to include('Number of day must be greater than or equal to 2')
       end
-      it 'number_of_days_idが4より上なので出品できない' do
-        @item.number_of_days_id = '5'
+      it 'number_of_day_idが4より上なので出品できない' do
+        @item.number_of_day_id = '5'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Number of days must be less than or equal to 4')
+        expect(@item.errors.full_messages).to include('Number of day must be less than or equal to 4')
       end
-      it 'number_of_days_idが整数ではないので出品できない' do
-        @item.number_of_days_id = '2.5'
+      it 'number_of_day_idが整数ではないので出品できない' do
+        @item.number_of_day_id = '2.5'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Number of days must be an integer')
+        expect(@item.errors.full_messages).to include('Number of day must be an integer')
       end
-      it 'number_of_days_idが全角なので出品できない' do
-        @item.number_of_days_id = '２'
+      it 'number_of_day_idが全角なので出品できない' do
+        @item.number_of_day_id = '２'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Number of days is not a number')
+        expect(@item.errors.full_messages).to include('Number of day is not a number')
       end
       it 'imageが存在しないので出品できない' do
         @item.image = nil

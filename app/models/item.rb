@@ -7,7 +7,7 @@ class Item < ApplicationRecord
     validates :detail_id
     validates :burden_id
     validates :shipment_source_id
-    validates :number_of_days_id
+    validates :number_of_day_id
     validates :image
   end
 
@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :detail_id,           numericality: { less_than_or_equal_to: 7 }
     validates :burden_id,           numericality: { less_than_or_equal_to: 3 }
     validates :shipment_source_id,  numericality: { less_than_or_equal_to: 48 }
-    validates :number_of_days_id,   numericality: { less_than_or_equal_to: 4 }
+    validates :number_of_day_id,    numericality: { less_than_or_equal_to: 4 }
   end
 
   belongs_to :user

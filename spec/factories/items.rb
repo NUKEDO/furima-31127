@@ -7,7 +7,7 @@ FactoryBot.define do
     detail_id           { '3' }
     burden_id           { '2' }
     shipment_source_id  { '15' }
-    number_of_days_id   { '2' }
+    number_of_day_id { '2' }
     association :user
   end
 end
