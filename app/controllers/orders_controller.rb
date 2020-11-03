@@ -5,12 +5,12 @@ class OrdersController < ApplicationController
 
   def create
     purchase_record = PurchaseRecord.new(purchase_params)
-    # @item = purchase_record.item
     if purchase_record.valid?
       purchase_record.save
       redirect_to root_path
-    # else
-      # render "/orders/"
+    else
+      @item = Item.find(params[:item_id])
+      render :index
     end
   end
 
