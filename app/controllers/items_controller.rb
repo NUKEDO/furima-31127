@@ -21,11 +21,23 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    count_stock(@item)
   end
 
   private
 
   def item_params
     params.require(:item).permit(:image, :price, :name, :text, :category_id, :detail_id, :burden_id, :shipment_source_id, :number_of_day_id).merge(user_id: current_user.id)
+  end
+
+  def count_stock(item)
+    @stock = "Exists"
+    purchase_records = PurchaseRecord.all
+    purchase_records.each do |purchase_record|
+      if purchase_record.item_id == item.id
+        @stock = nil
+        break
+      end
+    end
   end
 end
