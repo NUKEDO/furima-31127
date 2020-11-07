@@ -3,6 +3,7 @@ class OrderForm
   attr_accessor :user_id, :item_id, :postal_code, :prefecture, :city, :house_number, :building_name, :phone_number, :token
 
   with_options presence: true do
+    validates :token
     validates :postal_code
     validates :prefecture,      numericality: { only_integer: true, other_than: 1, greater_than_or_equal_to: 2, less_than_or_equal_to: 48 }
     validates :city
@@ -10,7 +11,6 @@ class OrderForm
     validates :phone_number
     validates :user_id
     validates :item_id
-    validates :token
   end
 
 
