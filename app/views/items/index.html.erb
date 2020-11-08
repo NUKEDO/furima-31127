@@ -119,19 +119,11 @@
 
       <% if @items %>
         <% @items.each do |item| %>
-          <% @stock = "Exists" %>
-          <% purchase_records = PurchaseRecord.all %>
-          <% purchase_records.each do |purchase_record| %>
-            <% if purchase_record.item_id == item.id %>
-              <% @stock = nil %>
-              <% break %>
-            <% end %>
-          <% end %>
           <li class='list'>
             <%= link_to item_path(item.id) do %>
               <div class='item-img-content'>
                 <%= image_tag item.image, class: "item-img" %>
-                <% if !@stock %>
+                <% if item.purchase_record %>
                   <div class='sold-out'>
                     <span>Sold Out!!</span>
                   </div>

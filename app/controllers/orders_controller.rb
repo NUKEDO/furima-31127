@@ -3,8 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     find_item
-    count_stock(@item)
-    if !@stock
+    if @item.purchase_record
       redirect_to root_path
     elsif current_user.id != @item.user_id
       @order_form = OrderForm.new
@@ -33,17 +32,6 @@ class OrdersController < ApplicationController
 
   def find_item
     @item = Item.find(params[:item_id])
-  end
-
-  def count_stock(item)
-    @stock = 'Exists'
-    purchase_records = PurchaseRecord.all
-    purchase_records.each do |purchase_record|
-      if purchase_record.item_id == item.id
-        @stock = nil
-        break
-      end
-    end
   end
 
   def pay_item
