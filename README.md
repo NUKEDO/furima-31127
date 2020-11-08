@@ -29,7 +29,7 @@
 | detail_id          | integer    | null: false                    |
 | burden_id          | integer    | null: false                    |
 | shipment_source_id | integer    | null: false                    |
-| number_of_days_id  | integer    | null: false                    |
+| number_of_day_id   | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
