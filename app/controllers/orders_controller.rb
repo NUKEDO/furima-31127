@@ -1,14 +1,12 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :index
+  before_action :find_item, only: :index, :create
 
   def index
-    find_item
-    if @item.purchase_record
+    if @item.purchase_record || current_user.id == @item.user_id
       redirect_to root_path
-    elsif current_user.id != @item.user_id
-      @order_form = OrderForm.new
     else
-      redirect_to root_path
+      @order_form = OrderForm.new
     end
   end
 
@@ -19,7 +17,6 @@ class OrdersController < ApplicationController
       @order_form.save
       redirect_to root_path
     else
-      find_item
       render :index
     end
   end

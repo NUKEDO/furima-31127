@@ -10,20 +10,8 @@ RSpec.describe OrderForm, type: :model do
       it 'トークンが存在し、全てのカラムに正しく入力されているので購入できる' do
         expect(@order_form).to be_valid
       end
-      it '郵便番号が正しく7桁分でありハイフン付きで入力されているので購入できる' do
-        @order_form.postal_code = '123-1234'
-        expect(@order_form).to be_valid
-      end
-      it '都道府県が2以上48以下なので購入できる' do
-        @order_form.prefecture_id = 48
-        expect(@order_form).to be_valid
-      end
       it '建物名が空欄でも購入できる' do
         @order_form.building_name = ''
-        expect(@order_form).to be_valid
-      end
-      it '電話番号が数字のみ10桁で入力されているので購入できる' do
-        @order_form.phone_number = '1234567890'
         expect(@order_form).to be_valid
       end
       it '電話番号が数字のみ11桁で入力されているので購入できる' do
