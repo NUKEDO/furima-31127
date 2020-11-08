@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def count_stock(item)
-    @stock = "Exists"
+    @stock = 'Exists'
     purchase_records = PurchaseRecord.all
     purchase_records.each do |purchase_record|
       if purchase_record.item_id == item.id

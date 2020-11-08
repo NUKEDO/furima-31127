@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
       render :index
     end
   end
-  
+
   private
 
   def purchase_params
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
   end
 
   def count_stock(item)
-    @stock = "Exists"
+    @stock = 'Exists'
     purchase_records = PurchaseRecord.all
     purchase_records.each do |purchase_record|
       if purchase_record.item_id == item.id
@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: Item.find(params[:item_id]).price,
       card: purchase_params[:token],

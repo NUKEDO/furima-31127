@@ -4,11 +4,11 @@ class OrderForm
 
   with_options presence: true do
     validates :token
-    validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "Input correctly" }
-    validates :prefecture_id, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 48, message: "Select" }
+    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'Input correctly' }
+    validates :prefecture_id, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 48, message: 'Select' }
     validates :city
     validates :house_number
-    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "is invalid. Input only number" }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid. Input only number' }
     validates :user_id
     validates :item_id
   end
