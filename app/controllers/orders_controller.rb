@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :index
 
   def index
-    @item = Item.find(params[:item_id])
+    find_item
     count_stock(@item)
     if !@stock
       redirect_to root_path
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
       @order_form.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
+      find_item
       render :index
     end
   end
@@ -29,6 +29,10 @@ class OrdersController < ApplicationController
 
   def purchase_params
     params.require(:order_form).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def find_item
+    @item = Item.find(params[:item_id])
   end
 
   def count_stock(item)

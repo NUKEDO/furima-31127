@@ -15,7 +15,7 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form).to be_valid
       end
       it '都道府県が2以上48以下なので購入できる' do
-        @order_form.prefecture_id = '48'
+        @order_form.prefecture_id = 48
         expect(@order_form).to be_valid
       end
       it '建物名が空欄でも購入できる' do
@@ -83,12 +83,12 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '都道府県が1(---)なので購入できない' do
-        @order_form.prefecture_id = '1'
+        @order_form.prefecture_id = 1
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include('Prefecture Select')
       end
       it '都道府県が49以上なので購入できない' do
-        @order_form.prefecture_id = '49'
+        @order_form.prefecture_id = 49
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include('Prefecture Select')
       end
