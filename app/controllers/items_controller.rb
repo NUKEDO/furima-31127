@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: :new
-  before_action :find_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!,  only: [:new, :edit]
+  before_action :find_item,           only: [:show, :edit, :update]
 
   def index
     @items = Item.all.order(created_at: 'DESC').includes(:purchase_record)
@@ -23,6 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if current_user.id != @item.user_id || @item.purchase_record
+      redirect_to root_path
+    end
   end
 
   def update
