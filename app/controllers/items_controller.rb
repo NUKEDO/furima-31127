@@ -34,9 +34,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if !@item.purchase_record && user_signed_in? && current_user.id == @item.user_id
-      @item.destroy
-    end
+    @item.destroy if !@item.purchase_record && user_signed_in? && current_user.id == @item.user_id
     redirect_to root_path
   end
 
