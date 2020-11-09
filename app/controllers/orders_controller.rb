@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :index
-  before_action :find_item, only: :index, :create
+  before_action :find_item, only: [:index, :create]
 
   def index
     if @item.purchase_record || current_user.id == @item.user_id
