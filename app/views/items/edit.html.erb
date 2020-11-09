@@ -9,10 +9,10 @@
       <%= render 'shared/error_messages', model: f.object %>
 
       <%= render partial: 'form', locals: { f: f } %>
-      
+
       <div class="sell-btn-contents">
-        <%= f.submit "出品する" ,class:"sell-btn" %>
-        <%=link_to 'もどる', root_path, class:"back-btn" %>
+        <%= f.submit "変更する" ,class:"sell-btn" %>
+        <%=link_to 'もどる', item_path(params[:id]), class:"back-btn" %>
       </div>
     <% end %>
   </div>
